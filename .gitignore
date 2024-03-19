@@ -1,2 +1,6 @@
 
+../server/node_modules
+../server/package-lock.json
+../server/.env
 
+../admin/node_modules
