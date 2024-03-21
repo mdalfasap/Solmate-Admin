@@ -67,7 +67,7 @@ function Premium() {
     <>
       <div
         className="container"
-        style={{ maxHeight: "600px", overflowY: "auto" }}
+        style={{ maxHeight: "600px", overflowY: "auto", scrollbarWidth: "" }}
       >
         <h1>Premium</h1>
         <Toaster />
@@ -85,7 +85,7 @@ function Premium() {
                 backgroundColor: "#2c3e50",
                 color: "#ecf0f1",
                 marginTop: "20px",
-              }}
+              }}                                                                         
               transition={{ duration: 0.3 }}
               className="p-2 link rounded"
               onClick={create}
@@ -94,7 +94,7 @@ function Premium() {
             </motion.button>
           </div>
 
-          <div className="col-12 mt-2" style={{ overflowX: "auto" }}>
+          <div className="col-12 mt-2" style={{}}>
             <div className="d-flex flex-wrap" style={{ marginTop: "-15px" }}>
               {plan.map((item, index) => (
                 <Card
@@ -108,7 +108,8 @@ function Premium() {
                     textAlign: "center",
                     borderRadius: "20px",
                     background: "white",
-                    overflow:'scroll',
+                    overflowY: "auto",
+                    scrollbarWidth: "none",
                     boxShadow:
                       " rgba(50, 50, 93, 0.25) 0px 30px 50px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 26px -18px inset", // Add border radius for rounded corners
                   }}
@@ -139,7 +140,7 @@ function Premium() {
                         <br />
                         <span style={{ fontWeight: "bold", margin: "8px" }}>
                           Icon:
-                             <img src={feature.icon} alt="" />
+                          <img src={feature.icon} alt="" />
                         </span>{" "}
                         {} {/* Replace feature.icon with the actual icon */}
                         <br />
@@ -192,5 +193,5 @@ function Premium() {
     </>
   );
 }
-
 export default Premium;
+                                                                       

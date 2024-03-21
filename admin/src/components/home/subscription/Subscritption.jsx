@@ -32,7 +32,7 @@ function home() {
         style={{
           height: "100vh",
           backgroundColor: "#36454F",
-          overflow: "hidden",
+          
         }}
       >
         <div className=" row  ">
