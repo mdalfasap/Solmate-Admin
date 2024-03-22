@@ -64,19 +64,17 @@ export default function AddNormal(props) {
             }}
           >
             <Toaster />
-            <span
-              onClick={handleBack}
+             <img onClick={handleBack}                        
               style={{
                 position: "absolute",
                 right: "1%",
                 top: "1%",
-                fontSize: "14px",
-                color: "red",
+                fontSize: "10px",
                 outline: "none",
-              }}
-            >
-              X
-            </span> 
+                cursor:'pointer',
+                width:'20px',
+                height:'20px'
+              }} src="https://cdn-icons-png.flaticon.com/128/93/93634.png" alt="" />
             <div
               className="mt-4"
               style={{

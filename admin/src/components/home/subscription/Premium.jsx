@@ -63,11 +63,11 @@ function Premium() {
     fetchData();
   }, []);
 
+
   return (
     <>
       <div
-        className="container"
-        style={{ maxHeight: "600px", overflowY: "auto", scrollbarWidth: "" }}
+         className="container" style={{ maxHeight: "70vh", overflowY: "auto", scrollbarWidth: "" }}
       >
         <h1>Premium</h1>
         <Toaster />
@@ -85,7 +85,7 @@ function Premium() {
                 backgroundColor: "#2c3e50",
                 color: "#ecf0f1",
                 marginTop: "20px",
-              }}                                                                         
+              }}                                                               
               transition={{ duration: 0.3 }}
               className="p-2 link rounded"
               onClick={create}
@@ -93,7 +93,7 @@ function Premium() {
               Create a Plan
             </motion.button>
           </div>
-
+    
           <div className="col-12 mt-2" style={{}}>
             <div className="d-flex flex-wrap" style={{ marginTop: "-15px" }}>
               {plan.map((item, index) => (

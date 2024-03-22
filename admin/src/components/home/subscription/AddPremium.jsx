@@ -4,7 +4,7 @@ import DialogContent from "@mui/material/DialogContent";
 import toast, { Toaster } from "react-hot-toast";
 import { RiDeleteBin2Fill } from "react-icons/ri";
 import { createPlan } from "../../../helper/helper";
-// Import the uploadFileToS3 function
+                                        
 
 export default function AddPremium(props) {
   const [image, setImage] = React.useState(null);
@@ -71,19 +71,11 @@ export default function AddPremium(props) {
     props.done(false);
   };
 
-  // const handleFileChange = (event) => {
-  //   setSelectedFile(event.target.files[0]);
-  //   console.log(event.target,'fgheirdfsaklheriu')
-  // };
   const onSelectFile = (event) => {
     setSelectedFile(event.target.files[0]);
 
-    // const reader = new FileReader();
-    // reader.readAsDataURL();
-    // reader.addEventListener("load", () => {
-      setImage(event.target.files[0]);
-      console.log(image);
-    // });
+    setImage(event.target.files[0]);
+    console.log(image);
   };
 
   const handleClose = () => {
@@ -117,10 +109,10 @@ export default function AddPremium(props) {
   };
 
   return (
-    <React.Fragment>
+    <React.Fragment >
       <Dialog
         open={props.open}
-        onClose={handleClose}
+        onClose={handleClose} 
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
@@ -132,27 +124,33 @@ export default function AddPremium(props) {
               alignItems: "center",
               justifyContent: "center",
               height: "auto",
-              backgroundColor: "#B2BEB5",
+              backgroundColor: "white",
+              boxShadow:
+              " rgba(50, 50, 93, 0.25) 0px 30px 50px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 26px -18px inset", // Add border radius for rounded corners
               width: "100%",
               position: "relative",
             }}
           >
             <Toaster />
-            <button
+
+            <img
               onClick={handleBack}
               style={{
                 position: "absolute",
                 right: "1%",
                 top: "1%",
                 fontSize: "10px",
-                background: "",
                 outline: "none",
+                cursor: "pointer",
+                width: "20px",
+                height: "20px",
               }}
-            >
-              X
-            </button>
+              src="https://cdn-icons-png.flaticon.com/128/93/93634.png"
+              alt=""
+            />
+
             <div
-              className="mt-5"
+              className="mt-3"
               style={{
                 textAlign: "center",
                 width: "100%",
@@ -167,8 +165,8 @@ export default function AddPremium(props) {
               style={{ textAlign: "left", width: "100%" }}
             >
               <form
-                className="mt-4"
-                style={{ marginBottom: "20px", width: "100%" }}
+                className="mt-2"
+                style={{ marginBottom: "10px", width: "100%" }}
                 onSubmit={storeToLocal}
               >
                 <div style={{ alignSelf: "flex-start" }}>Features</div>
@@ -176,20 +174,21 @@ export default function AddPremium(props) {
                   <input
                     type="text"
                     placeholder="Title"
-                    style={{ width: "25%", height: "5vh" }}
+                    style={{ width: "25%", height: "5vh",borderRadius:"8px" }}
                     value={title}
                     onChange={handleTitleChange}
                   />
                   <label
                     htmlFor="file"
                     className="ms-2 "
-                    style={{ cursor: "pointer" }}
+                    style={{ cursor: "pointer"  }}
                   >
                     <div
                       style={{
                         border: "1px solid #ccc",
                         display: "flex",
                         alignItems: "center",
+                        
                       }}
                     >
                       <input
@@ -197,14 +196,14 @@ export default function AddPremium(props) {
                         type="text"
                         value={selectedFile ? selectedFile.name : ""}
                         readOnly
-                        style={{ width: "60%", height: "5vh" }}
+                        style={{ width: "60%", height: "5vh" ,borderRadius:"8px"}}
                       />
                       <input
                         type="file"
                         id="file"
                         accept="image/*"
                         ref={inputRef}
-                        style={{ display: "none" }}
+                        style={{ display: "none"  }}
                         onChange={onSelectFile}
                       />
                       <span
@@ -214,6 +213,7 @@ export default function AddPremium(props) {
                           width: "40%",
                           paddingRight: 0,
                           height: "5vh",
+                          borderRadius:"8px"
                         }}
                       >
                         Choose File
@@ -224,66 +224,135 @@ export default function AddPremium(props) {
                     className="ms-2"
                     placeholder="Limit"
                     type="text"
-                    style={{ width: "20%", height: "5vh" }}
+                    style={{ width: "20%", height: "5vh" ,borderRadius:"8px"}}
                     value={limit}
                     onChange={handleLimitChange}
                   />
-                  <button className="ms-3 " type="submit">
-                    {" "}
+                  <button className="ms-3 " type="submit" style={{borderRadius:"8px"}}>
+                     
                     Add
                   </button>
                 </div>
               </form>
             </div>
-            <div className="w-75 mb-2" style={{ backgroundColor: "#D3D3D3" }}>
+            <div
+              className=" mt-4 pb-2"
+              style={{ borderBottom: "solid gray 1px", marginBottom: "5px" }}
+            >
+              <label htmlFor="selectPeriod">Select Period :</label>
+              <select
+                id="selectPeriod"
+                name="selectPeriod"
+                style={{ marginLeft: "1%", width: "25%", height: "5vh" }}
+                onChange={handlePeriodChange}
+                value={selectedPeriod}
+              >
+                <option value="monthly">Monthly</option>
+                <option value="yearly">Yearly</option>
+                <option value="weekly">Weekly</option>
+              </select>
+              <label htmlFor="price" className="ps-3">
+                Price (in ₹) :
+              </label>
+              <input
+                className="ms-1"
+                type="text"
+                id="price"
+                name="price"
+                value={price}
+                style={{ width: "25%", height: "5vh" }}
+                onChange={handlePriceChange}
+              />
+            </div>
+            <div className="w-75 mb-2" style={{ backgroundColor: "#" }}>
               <form className="mt-1 mb-2 text-center" onSubmit={handleSubmit}>
-                <div
-                  className="d-flex justify-content-center mt-4 pb-2"
-                  style={{ borderBottom: "solid gray 1px" }}
-                >
-                  <label htmlFor="selectPeriod">Select Period :</label>
-                  <select
-                    id="selectPeriod"
-                    name="selectPeriod"
-                    style={{ marginLeft: "1%", width: "25%", height: "5vh" }}
-                    onChange={handlePeriodChange}
-                    value={selectedPeriod}
-                  >
-                    <option value="monthly">Monthly</option>
-                    <option value="yearly">Yearly</option>
-                    <option value="weekly">Weekly</option>
-                  </select>
-                  <label htmlFor="price" className="ps-3">
-                    Price (in ₹) :
-                  </label>
-                  <input
-                    className="ms-1"
-                    type="text"
-                    id="price"
-                    name="price"
-                    value={price}
-                    style={{ width: "25%", height: "5vh" }}
-                    onChange={handlePriceChange}
-                  />
-                </div>
                 <table style={{ width: "100%" }}>
+                  <thead>
+                    <tr>
+                      <th
+                        style={{
+                          border: "2px solid black",
+                          borderRadius: "5px",
+                          padding: "10px",
+                        }}
+                      >
+                        Title
+                      </th>
+                      <th
+                        style={{
+                          border: "2px solid black",
+                          borderRadius: "5px",
+                          padding: "10px",
+                        }}
+                      >
+                        Icon
+                      </th>
+                      <th
+                        style={{
+                          border: "2px solid black",
+                          borderRadius: "5px",
+                          padding: "10px",
+                        }}
+                      >
+                        Limit
+                      </th>
+                      <th
+                        style={{
+                          border: "2px solid black",
+                          borderRadius: "5px",
+                          padding: "10px",
+                        }}
+                      >
+                        Action
+                      </th>{" "}
+                    </tr>
+                  </thead>
                   <tbody>
                     {plans.map((plan, index) => (
                       <tr key={index}>
-                        <td style={{ padding: "10px", textAlign: "center" }}>
+                        <td
+                          style={{
+                            padding: "10px",
+                            textAlign: "center",
+                            borderLeft: "2px solid black",
+                            borderRadius: "5px",
+                          }}
+                        >
                           {plan.title}
                         </td>
-                        <td style={{ padding: "10px", textAlign: "center" }}>
+                        <td
+                          style={{
+                            padding: "10px",
+                            textAlign: "center",
+                            borderLeft: "2px solid black",
+                            borderRadius: "5px",
+                          }}
+                        >
                           <img
                             src={plan.icon}
                             alt=""
                             style={{ width: "20px", height: "20px" }}
                           />
                         </td>
-                        <td style={{ padding: "10px", textAlign: "center" }}>
+                        <td
+                          style={{
+                            padding: "10px",
+                            textAlign: "center",
+                            borderLeft: "2px solid black",
+                            borderRadius: "5px",
+                          }}
+                        >
                           {plan.limit}
                         </td>
-                        <td style={{ padding: "10px", textAlign: "center" }}>
+                        <td
+                          style={{
+                            padding: "10px",
+                            textAlign: "center",
+                            borderLeft: "2px solid black",
+                            borderRight: "2px solid black",
+                            borderRadius: "5px",
+                          }}
+                        >
                           <RiDeleteBin2Fill
                             className="link"
                             onClick={() => deleteFeature(index)}

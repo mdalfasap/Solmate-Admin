@@ -205,7 +205,7 @@ export async function createPlan(req, res) {
             `${Date.now()}_${req.file.originalname}`
           );
           console.log("Uploaded image URL:", uploadedImageUrl);
-          Features.icon = uploadedImageUrl;
+          Features[0].icon = uploadedImageUrl;
         } catch (upladError) {
           console.error("Error uploading image:", uploadError);
           return res.status(500).send({ error: "Error uploading image" });
