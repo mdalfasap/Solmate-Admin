@@ -6,9 +6,7 @@ export const userSchema = new mongoose.Schema({
     required: [true, "please Enter Your Number"],
     unique: [true, "Number already in use"],
   },
-  userId: {
-      type:String,
-   },
+  
   firstName: {
     type: String,
   },
@@ -109,5 +107,9 @@ export const userSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  userId:{
+    type: String,
+    required: true, 
+},
 });
 export default mongoose.model("userModels", userSchema);

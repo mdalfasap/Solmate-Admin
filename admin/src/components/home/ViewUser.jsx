@@ -1,36 +1,34 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 import { useNavigate } from "react-router-dom";
-import { fetchUserData } from "../../helper/helper";
 
-function ViewUser() {
-  const [userData, setUserData] = useState([]);
-  const [loading, setLoading] = useState(true);
-
+function ViewUser(props) {
+  const [users, setUsers] = useState([]);
+ 
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchUser = async () => {
       try {
-        const fetchedUserData = await fetchUserData();
-        
-        setUserData(fetchedUserData);
-        setLoading(false);
+        const userId = props.userId; 
+        const response = await axios.get(`http://localhost:8081/api/getUser/${userId}`);
+        setUsers(response.data);
       } catch (error) {
-        console.error("Error fetching user data:", error);
-        setLoading(false);
+        console.error("Error fetching user:", error);
       }
     };
-    fetchData();
-  }, []);
 
+    fetchUser();
+  }, [props.userId]);
   const handleBack = () => {
     navigate("/usermanagement"); // Navigate to the user management page
   };
+ 
 
   return (
-    <>
+    <div>
       <div
         className="container-fluid "
         style={{
@@ -58,42 +56,31 @@ function ViewUser() {
             </button>
 
             {/* Table */}
-            <table className="table">
+            <table>
               <thead>
                 <tr>
-                  <th>ID</th>
+                  <th>#</th>
                   <th>Name</th>
                   <th>Email</th>
-                  {/* Add more columns as needed */}
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
-                {loading ? (
-                  <tr>
-                    <td colSpan="3">Loading...</td>
+                {users.map((user, index) => (
+                  <tr key={user._id}>
+                    <td>{index + 1}</td>
+                    <td>
+                      {user.firstName} {user.lastName}
+                    </td>
+                    <td>{user.email}</td>
                   </tr>
-                ) : (
-                  userData.map((user) => (
-                    
-                    <tr key={user.id}>
-                       <img  style={{ width: "37px", borderRadius: "50%" }}src={user.photoUpload} alt="" />
-                      <td>{user.id}</td>
-                      <td>{user.firstName}</td>
-                      <td>{user.email}</td>
-                      <td>{user.schoolName}</td>
-                      <td>{user.religion}</td>
-                      <td>{user.education}</td>
-                      <td>{user.language}</td>
-                      <td>{user.graduationYear}</td>
-                    </tr>
-                  ))
-                )}
+                ))}
               </tbody>
             </table>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

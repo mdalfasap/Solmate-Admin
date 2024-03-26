@@ -107,6 +107,28 @@ export async function login(req, res) {
   }
 }
 
+
+
+export async function getUser(req, res) {
+  try {
+    const userId = req.params.id;
+   
+
+    const user = await userModel.find(userId);
+    
+    if (!user) {
+      return res.status(404).json({ msg: "User not found" });
+    } else {
+      return res.status(200).json(user);
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    return res.status(500).json({ error: error.message });
+  }
+}
+
+
+
 export async function getUsers(req, res) {
   try {
     const users = await userModel.find({ firstName: { $ne: null }, lastName: { $ne: null } });

@@ -24,5 +24,6 @@ router.post("/createPlan", upload.single("icon"), Auth, controller.createPlan);
 router.get("/getPlan", Auth, controller.getPlan);
 router.delete("/deletePlan/:id", Auth, controller.deletePlan);
 router.post("/submitDetails/:userId", Auth, controller.submitDetails);
+router.get("/getUser/:userId", controller.getUser);
 
 export default router;
