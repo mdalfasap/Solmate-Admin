@@ -71,7 +71,7 @@ function UserManagement(props) {
     {
       name: "Photo",
       selector: (row) => (
-        <img
+        <img 
           src={row.photoUpload[0]} // Assuming photoUpload is an array with photo URLs
           alt={`Photo of ${row.firstName}`}
           style={{ width: "37px", borderRadius: "50%" }}

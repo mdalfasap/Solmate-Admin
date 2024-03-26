@@ -72,7 +72,7 @@ function home() {
     setUpdateUser(true);
   };
   const showView = () => {
-    setViewUser(true);
+     navigate('/ViewUser')
   };
   const showDelete = (row) => {
     setDeleteUser(true);
@@ -97,7 +97,7 @@ function home() {
             className="col-10 "
             style={{ backgroundColor: "#D3D3D3", height: "90vh" }}
           >
-            {updateUser && <Update />} {viewUser && <ViewUser />}
+            {updateUser && <Update />}  
             <Modal show={deleteUser} centered>
               <Modal.Title style={{ paddingLeft: "110px", paddingTop: "20px" }}>
                 Block User Confirmation
@@ -122,11 +122,13 @@ function home() {
                 </Button>
               </Modal.Footer>
             </Modal>
+             
             <UserManagement
               showUpdate={showUpdate}
               showView={showView}
               showDelete={showDelete}
             />{" "}
+            
           </div>{" "}
         </div>{" "}
       </div>{" "}

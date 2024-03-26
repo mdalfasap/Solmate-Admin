@@ -71,7 +71,6 @@ export const fetchPendingData = async () => {
 };
 export const createPlan = async (plan) => {
   try {
-
     const token = await localStorage.getItem("token");
     const response = await axios.post("/api/createPlan", plan, {
       headers: {

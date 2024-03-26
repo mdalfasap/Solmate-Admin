@@ -4,7 +4,6 @@ import DialogContent from "@mui/material/DialogContent";
 import toast, { Toaster } from "react-hot-toast";
 import { RiDeleteBin2Fill } from "react-icons/ri";
 import { createPlan } from "../../../helper/helper";
-                                        
 
 export default function AddPremium(props) {
   const [image, setImage] = React.useState(null);
@@ -15,6 +14,7 @@ export default function AddPremium(props) {
   const [title, setTitle] = React.useState("");
   const [limit, setLimit] = React.useState("");
   const inputRef = React.useRef();
+
   const handlePeriodChange = (event) => {
     setSelectedPeriod(event.target.value);
   };
@@ -46,7 +46,6 @@ export default function AddPremium(props) {
     formData.append("Price", price);
     formData.append("Type", "Premium");
     // Append selected file if exists
-    console.log(image, "selectedFileselectedFileselectedFileselectedFile");
     formData.append("icon", image);
 
     try {
@@ -73,9 +72,7 @@ export default function AddPremium(props) {
 
   const onSelectFile = (event) => {
     setSelectedFile(event.target.files[0]);
-
     setImage(event.target.files[0]);
-    console.log(image);
   };
 
   const handleClose = () => {
@@ -119,12 +116,13 @@ export default function AddPremium(props) {
         <DialogContent style={{ margin: 0, padding: 0 }}>
           <div
             style={{
+              borderRadius:"50px",
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
               height: "auto",
-              backgroundColor: "white",
+              backgroundColor: "##edebe8",
               boxShadow:
               " rgba(50, 50, 93, 0.25) 0px 30px 50px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 26px -18px inset", // Add border radius for rounded corners
               width: "100%",
@@ -132,7 +130,6 @@ export default function AddPremium(props) {
             }}
           >
             <Toaster />
-
             <img
               onClick={handleBack}
               style={{
@@ -228,14 +225,9 @@ export default function AddPremium(props) {
                     value={limit}
                     onChange={handleLimitChange}
                   />
-                  <button className="ms-3 " type="submit" style={{borderRadius:"8px"}}>
-                     
-                    Add
-                  </button>
+                 
                 </div>
-              </form>
-            </div>
-            <div
+                <div
               className=" mt-4 pb-2"
               style={{ borderBottom: "solid gray 1px", marginBottom: "5px" }}
             >
@@ -264,6 +256,21 @@ export default function AddPremium(props) {
                 onChange={handlePriceChange}
               />
             </div>
+                <button
+                  className=""
+                  type="submit"
+                  style={{
+                    borderRadius: "8px",
+                    marginLeft: "216px",
+                    paddingRight: " 50px",
+                    paddingLeft:"50px"
+                  }}
+                >
+                  Add
+                </button>
+              </form>
+            </div>
+            
             <div className="w-75 mb-2" style={{ backgroundColor: "#" }}>
               <form className="mt-1 mb-2 text-center" onSubmit={handleSubmit}>
                 <table style={{ width: "100%" }}>
@@ -271,7 +278,7 @@ export default function AddPremium(props) {
                     <tr>
                       <th
                         style={{
-                          border: "2px solid black",
+                          border: "2px solid black", 
                           borderRadius: "5px",
                           padding: "10px",
                         }}
@@ -310,6 +317,7 @@ export default function AddPremium(props) {
                   <tbody>
                     {plans.map((plan, index) => (
                       <tr key={index}>
+                         
                         <td
                           style={{
                             padding: "10px",

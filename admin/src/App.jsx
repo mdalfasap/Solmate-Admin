@@ -6,6 +6,7 @@ import Subscritption from "./components/home/subscription/Subscritption";
 import Notification from './components/home/notification/Notification'
 import Administration from "./components/home/administration/Administration";
 import Dashboard from "./components/home/dashboard/Dashboard";
+import ViewUser from "./components/home/ViewUser";
 
 function App() {
 const router = createBrowserRouter(
@@ -37,6 +38,10 @@ const router = createBrowserRouter(
     {
       path: "/dashboard",
       element:<Dashboard/>
+    },
+    {
+      path: "/viewUser",
+      element:<ViewUser/>
     },
   ],
   {

@@ -32,6 +32,7 @@ function Premium() {
     }
   };
 
+ 
   const fetchData = async () => {
     try {
       const fetchedPlan = await fetchPremiumPlan();
