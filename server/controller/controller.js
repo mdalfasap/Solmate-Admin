@@ -4,8 +4,7 @@ import adminSubscription from "../model/adminSubscription.js";
 import bcrypt from "bcrypt";
 import dotenv from "dotenv";
 import Jwt from "jsonwebtoken";
-import {uploadFileToS3} from '../utils/s3multer.js';
- 
+import { uploadFileToS3 } from "../utils/s3multer.js";
 
 dotenv.config();
 
@@ -107,14 +106,12 @@ export async function login(req, res) {
   }
 }
 
-
-
 export async function getUser(req, res) {
   try {
-    const userId = req.params.id;
-   
-
-    const user = await userModel.find(userId);
+    const userId = req.params.userId;
+    console.log(userId)
+    
+    const user = await userModel.findById(userId);
     
     if (!user) {
       return res.status(404).json({ msg: "User not found" });
@@ -125,20 +122,22 @@ export async function getUser(req, res) {
     console.error("Error:", error);
     return res.status(500).json({ error: error.message });
   }
+
 }
-
-
 
 export async function getUsers(req, res) {
   try {
-    const users = await userModel.find({ firstName: { $ne: null }, lastName: { $ne: null } });
-    const pending = await userModel.find({firstName: null, lastName: null });
-       
+    const users = await userModel.find({
+      firstName: { $ne: null },
+      lastName: { $ne: null },
+    });
+    const pending = await userModel.find({ firstName: null, lastName: null });
+
     res.status(200).json({
       error: false,
       message: "User details retrieved successfully",
-     users,
-     pending
+      users,
+      pending,
     });
   } catch (error) {
     console.error("Error retrieving users:", error);
@@ -211,7 +210,9 @@ export async function createPlan(req, res) {
       });
 
       await plan.save();
-      return res.status(201).send({ error: false, msg: "Plan created successfully" });
+      return res
+        .status(201)
+        .send({ error: false, msg: "Plan created successfully" });
     } else if (Type === "Premium") {
       if (!Features || !Price || !Period) {
         return res.status(400).send({ error: "Invalid request parameters" });
@@ -243,7 +244,9 @@ export async function createPlan(req, res) {
       });
 
       await plan.save();
-      return res.status(201).send({ error: false, msg: "Plan created successfully" });
+      return res
+        .status(201)
+        .send({ error: false, msg: "Plan created successfully" });
     } else {
       return res.status(400).send({ error: "Invalid plan type" });
     }
@@ -252,8 +255,6 @@ export async function createPlan(req, res) {
     return res.status(500).send({ error: "Internal Server Error" });
   }
 }
-
-
 
 export async function getPlan(req, res) {
   try {
@@ -323,7 +324,7 @@ export async function submitDetails(req, res) {
         data: updatedUser,
         error: false,
       });
-      console.log(existingUser.blocked,existingUser._id);
+      console.log(existingUser.blocked, existingUser._id);
     }
   } catch (error) {
     console.error("Error during user update:", error);

@@ -71,8 +71,8 @@ function home() {
   const showUpdate = () => {
     setUpdateUser(true);
   };
-  const showView = () => {
-     navigate('/ViewUser')
+  const showView = (row) => {
+     navigate(`/ViewUser/${row._id}`)
   };
   const showDelete = (row) => {
     setDeleteUser(true);

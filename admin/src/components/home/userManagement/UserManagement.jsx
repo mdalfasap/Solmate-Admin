@@ -55,9 +55,7 @@ function UserManagement(props) {
     fetchData();
   }, []);
 
-  const update = (row) => {
-    props.showUpdate(row); // Pass row data to showUpdate function
-  };
+  
 
   const view = (row) => {
     props.showView(row); // Pass row data to showView function
@@ -123,10 +121,7 @@ function UserManagement(props) {
             onClick={() => view(row)}
             style={{ cursor: "pointer", color: "blue", marginRight: "20px" }}
           />
-          <FaRegEdit
-            onClick={() => update(row)}
-            style={{ cursor: "pointer", color: "blue", marginRight: "20px" }}
-          />
+          
           {row.blocked ? (
             <CgUnblock
               onClick={() => blockUser(row._id)}

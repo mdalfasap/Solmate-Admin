@@ -40,7 +40,7 @@ const router = createBrowserRouter(
       element:<Dashboard/>
     },
     {
-      path: "/viewUser",
+      path: "/viewUser/:id",
       element:<ViewUser/>
     },
   ],
