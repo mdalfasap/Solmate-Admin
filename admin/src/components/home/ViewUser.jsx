@@ -4,6 +4,7 @@ import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 import { useNavigate, useParams } from "react-router-dom";
 import { FaRegEdit } from "react-icons/fa";
+import { Button } from "react-bootstrap";
 
 function ViewUser(props) {
   const { id } = useParams();
@@ -55,9 +56,9 @@ function ViewUser(props) {
             }}
           >
             {/* Back Button */}
-            <button className="btn btn-primary mb-3" onClick={handleBack}>
+            <Button variant="contained" color="success"onClick={handleBack} >
               Back
-            </button>
+            </Button>
 
             {/* User Data */}
             {user && (
@@ -73,8 +74,7 @@ function ViewUser(props) {
                 <div
                   className="card mb-3"
                   style={{
-                    borderRadius: "15px",
-
+                    borderRadius: "20px",
                     boxShadow:
                       " rgba(50, 50, 93, 0.25) 0px 30px 50px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 26px -18px inset", // Add border radius for rounded corners
                   }}
