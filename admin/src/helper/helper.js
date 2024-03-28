@@ -149,11 +149,13 @@ export async function submitDetails(userId, response) {
     return Promise.reject({ error: "Couldn't Submit" });
   }
 }
+
+//view User
+
 export async function getUser(id) {
   try {
-    
     const response = await axios.get(`api/getUser/${id}`);
-    return response.data
+    return response.data;
   } catch (error) {
     console.error("Error fetching user:", error);
   }

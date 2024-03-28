@@ -5,6 +5,7 @@ import Sidebar from "./Sidebar";
 import { useNavigate, useParams } from "react-router-dom";
 import { FaRegEdit } from "react-icons/fa";
 import { Button } from "react-bootstrap";
+import { getUser } from "../../helper/helper";
 
 function ViewUser(props) {
   const { id } = useParams();
@@ -14,10 +15,8 @@ function ViewUser(props) {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:8081/api/getUser/${id}`
-        );
-        setUser(response.data);
+        const userData = await getUser(id);  
+        setUser(userData);
       } catch (error) {
         console.error("Error fetching user:", error);
       }

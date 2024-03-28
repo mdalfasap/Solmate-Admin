@@ -109,7 +109,7 @@ export async function login(req, res) {
 export async function getUser(req, res) {
   try {
     const userId = req.params.userId;
-    console.log(userId)
+    // console.log(userId)
     
     const user = await userModel.findById(userId);
     

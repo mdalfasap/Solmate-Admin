@@ -199,7 +199,7 @@ function UserManagement(props) {
 
   return (
     <div>
-      <Box sx={{ borderBottom: 0, borderColor: "divider" }}>
+      <Box sx={{ borderBottom: 0, borderColor: "divider"  }}>
         <Tabs
           value={value}
           onChange={handleChange}
@@ -211,7 +211,7 @@ function UserManagement(props) {
           <Tab label="Pending User" />
         </Tabs>
       </Box>
-      <CustomTabPanel value={value} index={0}>
+      <CustomTabPanel value={value} index={0} s>
         <div
           className="text"
           style={{
@@ -219,6 +219,7 @@ function UserManagement(props) {
             float: "right",
             marginTop: "-43px",
             position: "relative",
+            
           }}
         >
           <input

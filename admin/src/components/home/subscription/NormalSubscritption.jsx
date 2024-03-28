@@ -85,7 +85,7 @@ function NormalSubscription() {
 
   return (
     <>
-      <div className="container" style={{ marginTop: "-40px" }}>
+      <div className="container" style={{ marginTop: "-40px",  }}>
         <Toaster />
         <div className="row">
           <div className="col-12 d-flex justify-content-end"> 
@@ -112,7 +112,8 @@ function NormalSubscription() {
                 height: "350px",
                 width: "90%",
                 borderRadius: "5px",
-                backgroundColor: "white", // Set background color to white
+                backgroundColor: "white",
+                boxShadow:  " rgba(50, 50, 93, 0.25) 0px 30px 50px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 26px -18px inset", // Set background color to white
               }}
             >
               <h2
