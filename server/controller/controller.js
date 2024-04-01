@@ -333,3 +333,23 @@ export async function submitDetails(req, res) {
       .send({ message: `Internal Server Error ${error}`, error: true });
   }
 }
+
+export async function getEdit (req,res){
+  try {
+    const userId = req.params.id;
+    const updatedUserData = req.body; // Assuming the updated user data is sent in the request body
+
+    // Update user data in the database
+    const updatedUser = await userModel.findByIdAndUpdate(userId, updatedUserData, { new: true });
+     
+    if (!updatedUser) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.status(200).json({ message: "User updated successfully", });
+  } catch (error) {
+    console.error("Error updating user:", error);
+    res.status(500).json({ error: "Failed to update user" });
+  }
+
+}

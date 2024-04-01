@@ -2,6 +2,7 @@ import express from "express";
 import * as controller from "../controller/controller.js";
 import Auth from "../middleware/auth.js";
 import multer from "multer";
+ 
 
 const { Router } = express;
 
@@ -24,5 +25,6 @@ router.get("/getPlan", Auth, controller.getPlan);
 router.delete("/deletePlan/:id", Auth, controller.deletePlan);
 router.post("/submitDetails/:userId", Auth, controller.submitDetails);
 router.get("/getUser/:userId", controller.getUser);
+router.put("/update/:id",controller.getEdit)
 
 export default router;
