@@ -17,6 +17,7 @@ import DialogActions from "@mui/material/DialogActions";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import Typography from "@mui/material/Typography";
+import toast, { Toaster } from "react-hot-toast";
 import "./ViewUser.css"; // Import CSS file for custom scrollbar style
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
@@ -73,23 +74,18 @@ function ViewUser(props) {
   };
 
   const handleUpdateUser = async () => {
-    console.log("User ID:", id);
-    console.log("Updated User:", updatedUser);
     try {
       await axios.put(`/api/update/${id}`, updatedUser);
       setOpen(false);
       setUser(updatedUser);
-      alert("User updated successfully!");
+      toast.success("User updated successfully!");
     } catch (error) {
       console.error("Error updating user:", error);
-      alert("Failed to update user.");
+      toast.error("Failed to update user.");
     }
   };
 
-  
-
   return (
-   
     <div>
       <div
         className="container-fluid"
@@ -116,6 +112,7 @@ function ViewUser(props) {
             <Button variant="contained" color="success" onClick={handleBack}>
               Back
             </Button>
+            <Toaster />
             {/* User Data */}
             {user && (
               <div className="user-container">
@@ -161,7 +158,7 @@ function ViewUser(props) {
                                     " rgba(50, 50, 93, 0.25) 0px 30px 50px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 26px -18px inset",
                                 }}
                               >
-                                EDIT
+                                User Edit
                               </DialogTitle>
                               <IconButton
                                 aria-label="close"
@@ -173,7 +170,6 @@ function ViewUser(props) {
                                   color: (theme) => theme.palette.grey[500],
                                 }}
                               >
-                                {" "}
                                 <CloseIcon />
                               </IconButton>
                               <DialogContent dividers>
@@ -191,7 +187,6 @@ function ViewUser(props) {
                                           value={updatedUser.email}
                                           onChange={handleInputChange}
                                           className="input-box"
-                                          
                                         />
                                       </p>
                                       <p className="card-text">
@@ -227,7 +222,6 @@ function ViewUser(props) {
                                           onChange={handleInputChange}
                                           className="input-box"
                                         />
-
                                       </p>
                                       <p className="card-text">
                                         <strong>Drinking Habbit:</strong>
@@ -565,9 +559,6 @@ function ViewUser(props) {
                             </p>
                             <p className="card-text">
                               <strong>Country:</strong> {user.country}
-                            </p>
-                            <p className="card-text">
-                              <strong>Interested In:</strong>{" "}
                             </p>
                           </div>
                           <div className="col-4">

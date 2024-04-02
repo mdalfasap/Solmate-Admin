@@ -55,8 +55,6 @@ function UserManagement(props) {
     fetchData();
   }, []);
 
-  
-
   const view = (row) => {
     props.showView(row); // Pass row data to showView function
   };
@@ -69,7 +67,7 @@ function UserManagement(props) {
     {
       name: "Photo",
       selector: (row) => (
-        <img 
+        <img
           src={row.photoUpload[0]} // Assuming photoUpload is an array with photo URLs
           alt={`Photo of ${row.firstName}`}
           style={{ width: "37px", borderRadius: "50%" }}
@@ -121,7 +119,7 @@ function UserManagement(props) {
             onClick={() => view(row)}
             style={{ cursor: "pointer", color: "blue", marginRight: "20px" }}
           />
-          
+
           {row.blocked ? (
             <CgUnblock
               onClick={() => blockUser(row._id)}
@@ -184,7 +182,6 @@ function UserManagement(props) {
       const email = row.email.toLowerCase();
       return email.includes(keyword);
     });
-    
 
     const filteredData =
       filteredByName.length > 0 ? filteredByName : filteredByEmail;
@@ -199,7 +196,7 @@ function UserManagement(props) {
 
   return (
     <div>
-      <Box sx={{ borderBottom: 0, borderColor: "divider"  }}>
+      <Box sx={{ borderBottom: 0, borderColor: "divider" }}>
         <Tabs
           value={value}
           onChange={handleChange}
@@ -219,7 +216,6 @@ function UserManagement(props) {
             float: "right",
             marginTop: "-43px",
             position: "relative",
-            
           }}
         >
           <input

@@ -337,9 +337,8 @@ export async function submitDetails(req, res) {
 export async function getEdit (req,res){
   try {
     const userId = req.params.id;
-    const updatedUserData = req.body; // Assuming the updated user data is sent in the request body
-
-    // Update user data in the database
+    const updatedUserData = req.body;  
+    
     const updatedUser = await userModel.findByIdAndUpdate(userId, updatedUserData, { new: true });
      
     if (!updatedUser) {
