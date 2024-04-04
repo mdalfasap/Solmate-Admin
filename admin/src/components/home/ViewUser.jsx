@@ -45,11 +45,11 @@ function ViewUser(props) {
   const handleClose = () => {
     setOpen(false);
   };
-                                                                                                 
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
- 
+
   useEffect(() => {
     const fetchUser = async () => {
       try {
@@ -62,7 +62,7 @@ function ViewUser(props) {
     };
 
     fetchUser();
-  }, [id]);  
+  }, [id]);
   const handleBack = () => {
     navigate("/usermanagement");
   };
@@ -121,7 +121,7 @@ function ViewUser(props) {
             <Toaster />
             {/* User Data */}
             {user && (
-              <div className="user-container">
+              <div className="user-container" style={{ marginTop: "-7px" }}>
                 <div
                   className="card mb-3 "
                   style={{
@@ -611,19 +611,17 @@ function ViewUser(props) {
             )}
             {user && (
               <div
-                className=" "
+                className="user-container "
                 style={{
-                  overflowY: "auto",
-                  width: "100%",
-                  height: "250px",
-                  paddingTop:"3px",
-                 
+                  height: "255px",
+                  paddingTop: "-2px",
+                  paddingBottom: "x",
                 }}
               >
                 <div className="card mb-3" style={{}}>
                   <div className="card-body" style={{ padding: "20px" }}>
                     <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-                      <Tabs        
+                      <Tabs
                         value={value}
                         onChange={handleChange}
                         textColor="secondary"
@@ -636,8 +634,8 @@ function ViewUser(props) {
                     </Box>
                     {value === "one" && (
                       <div className=" ">
-                        <LikedProfilesComponent/>
-                        </div>
+                        <LikedProfilesComponent />
+                      </div>
                     )}
                     {value === "two" && (
                       <div className="justify-center m-5">Fevorite Profile</div>

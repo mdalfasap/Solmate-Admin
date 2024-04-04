@@ -4,12 +4,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { color } from "framer-motion";
+ 
 
-function LikedProfilesComponent() {
+function  LikedProfilesComponent() {
   const [profiles, setProfiles] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+ 
+  const [ setError] = useState("");
   const { id } = useParams();
 
   useEffect(() => {
@@ -20,9 +20,7 @@ function LikedProfilesComponent() {
         setProfiles(response.data.profiles);
       } catch (error) {
         setError("Failed to fetch liked profiles");
-      } finally {
-        setLoading(false);
-      }
+      }  
     }
 
     fetchLikedProfiles();
@@ -30,11 +28,7 @@ function LikedProfilesComponent() {
 
   return (
     <div>
-      {loading ? (
-        <p>Loading...</p>
-      ) : error ? (
-        <p>{error}</p>
-      ) : (
+     
         <table style={{ borderCollapse: "collapse", width: "100%" }}>
           <thead>
             <tr>
@@ -63,7 +57,7 @@ function LikedProfilesComponent() {
             ))}
           </tbody>
         </table>
-      )}
+      
     </div>
   );
 }
