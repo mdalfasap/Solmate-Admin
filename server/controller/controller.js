@@ -1,5 +1,6 @@
 import adminModel from "../model/adminModel.js";
 import userModel from "../model/userModel.js";
+import likeModel from "../model/likeModel.js";
 import adminSubscription from "../model/adminSubscription.js";
 import bcrypt from "bcrypt";
 import dotenv from "dotenv";
@@ -110,9 +111,9 @@ export async function getUser(req, res) {
   try {
     const userId = req.params.userId;
     // console.log(userId)
-    
+
     const user = await userModel.findById(userId);
-    
+
     if (!user) {
       return res.status(404).json({ msg: "User not found" });
     } else {
@@ -122,7 +123,6 @@ export async function getUser(req, res) {
     console.error("Error:", error);
     return res.status(500).json({ error: error.message });
   }
-
 }
 
 export async function getUsers(req, res) {
@@ -334,21 +334,47 @@ export async function submitDetails(req, res) {
   }
 }
 
-export async function getEdit (req,res){
+export async function getEdit(req, res) {
   try {
     const userId = req.params.id;
-    const updatedUserData = req.body;  
-    
-    const updatedUser = await userModel.findByIdAndUpdate(userId, updatedUserData, { new: true });
-     
+    const updatedUserData = req.body;
+
+    const updatedUser = await userModel.findByIdAndUpdate(
+      userId,
+      updatedUserData,
+      { new: true }
+    );
+
     if (!updatedUser) {
       return res.status(404).json({ message: "User not found" });
     }
-
-    res.status(200).json({ message: "User updated successfully", });
+    res.status(200).json({ message: "User updated successfully" });
   } catch (error) {
     console.error("Error updating user:", error);
     res.status(500).json({ error: "Failed to update user" });
   }
+}
+export async function likedprofile(req, res) {
+  try {
+    const { senderId } = req.params;
 
+    const likedProfiles = await likeModel.find({
+      liked: true,
+      senderId: senderId,
+    });
+
+    if (likedProfiles.length > 0) {
+      const receiverIds = likedProfiles.map((profile) => profile.receiverId);
+
+      const profiles = await userModel.find({ _id: { $in: receiverIds } });
+         console.log(profiles,"kasldjjaskf;kj")
+      res.status(200).json({ profiles: profiles });
+    } else {
+      console.log("No liked profiles found for the sender");
+      res.status(404).json({ error: "No liked profiles found for the sender" });
+    }
+  } catch (error) {
+    console.error("Error fetching liked profiles:", error);
+    res.status(500).json({ error: "Failed to fetch liked profiles" });
+  }
 }

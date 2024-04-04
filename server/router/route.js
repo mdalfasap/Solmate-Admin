@@ -26,5 +26,6 @@ router.delete("/deletePlan/:id", Auth, controller.deletePlan);
 router.post("/submitDetails/:userId", Auth, controller.submitDetails);
 router.get("/getUser/:userId", controller.getUser);
 router.put("/update/:id",controller.getEdit)
+router.get("/likeprofile/:senderId",controller.likedprofile)
 
 export default router;

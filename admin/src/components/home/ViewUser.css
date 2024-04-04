@@ -11,6 +11,7 @@
 .user-container::-webkit-scrollbar {
   width: 5px; /* Adjust width of the scrollbar */
 }
+ 
 
 /* Track (background) of the scrollbar */
 .user-container::-webkit-scrollbar-track {
@@ -36,4 +37,4 @@
   border: 1px solid #ccc;
   box-sizing: border-box;
 }
-
+ 

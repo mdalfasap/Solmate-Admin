@@ -19,6 +19,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import Typography from "@mui/material/Typography";
 import toast, { Toaster } from "react-hot-toast";
 import "./ViewUser.css"; // Import CSS file for custom scrollbar style
+import LikedProfilesComponent from "./LikedProfile";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -39,11 +40,16 @@ function ViewUser(props) {
   const [updatedUser, setUpdatedUser] = useState(null);
   const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
+  const [value, setValue] = useState("one");
 
   const handleClose = () => {
     setOpen(false);
   };
-
+                                                                                                 
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+ 
   useEffect(() => {
     const fetchUser = async () => {
       try {
@@ -56,7 +62,7 @@ function ViewUser(props) {
     };
 
     fetchUser();
-  }, [id]);
+  }, [id]);  
   const handleBack = () => {
     navigate("/usermanagement");
   };
@@ -117,7 +123,7 @@ function ViewUser(props) {
             {user && (
               <div className="user-container">
                 <div
-                  className="card mb-3"
+                  className="card mb-3 "
                   style={{
                     boxShadow:
                       " rgba(50, 50, 93, 0.25) 0px 30px 50px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 26px -18px inset",
@@ -588,7 +594,6 @@ function ViewUser(props) {
                             <p className="card-text">
                               <strong>City:</strong> {user.city}
                             </p>
-
                             <p className="card-text">
                               <strong>Experience:</strong> {user.experience}
                             </p>
@@ -608,17 +613,19 @@ function ViewUser(props) {
               <div
                 className=" "
                 style={{
-                  overflow: "auto",
+                  overflowY: "auto",
                   width: "100%",
-                  height: "280px",
+                  height: "250px",
+                  paddingTop:"3px",
+                 
                 }}
               >
                 <div className="card mb-3" style={{}}>
                   <div className="card-body" style={{ padding: "20px" }}>
                     <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-                      <Tabs
-                        // value={value}
-                        // onChange={handleChange}
+                      <Tabs        
+                        value={value}
+                        onChange={handleChange}
                         textColor="secondary"
                         indicatorColor="secondary"
                         aria-label="secondary tabs example"
@@ -627,16 +634,22 @@ function ViewUser(props) {
                         <Tab value="two" label="Fevorite Profile" />
                       </Tabs>
                     </Box>
+                    {value === "one" && (
+                      <div className=" ">
+                        <LikedProfilesComponent/>
+                        </div>
+                    )}
+                    {value === "two" && (
+                      <div className="justify-center m-5">Fevorite Profile</div>
+                    )}
                   </div>
                 </div>
               </div>
             )}
-            {/* Add other tabs or sections here */}
           </div>
         </div>
       </div>
     </div>
   );
 }
-
 export default ViewUser;
