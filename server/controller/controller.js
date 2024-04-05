@@ -354,6 +354,7 @@ export async function getEdit(req, res) {
     res.status(500).json({ error: "Failed to update user" });
   }
 }
+
 export async function likedprofile(req, res) {
   try {
     const { senderId } = req.params;
@@ -367,7 +368,7 @@ export async function likedprofile(req, res) {
       const receiverIds = likedProfiles.map((profile) => profile.receiverId);
 
       const profiles = await userModel.find({ _id: { $in: receiverIds } });
-         console.log(profiles,"kasldjjaskf;kj")
+       
       res.status(200).json({ profiles: profiles });
     } else {
       console.log("No liked profiles found for the sender");
@@ -378,3 +379,27 @@ export async function likedprofile(req, res) {
     res.status(500).json({ error: "Failed to fetch liked profiles" });
   }
 }
+
+
+// export async function likeDelete(req, res) {
+//   try {
+   
+   
+//       const id = req.params.receiverId;
+//       await userModel.findByIdAndDelete(id);
+
+//       res.status(200).json({
+//         error: false,
+//         message: "like deleted successfully",
+//         data: null,
+//       });
+    
+//   } catch (error) {
+//     console.error("Error deleting plan:", error);
+//     res.status(500).json({
+//       error: true,
+//       message: error.message,
+//       data: null,
+//     });
+//   }
+// }

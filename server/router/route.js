@@ -27,5 +27,7 @@ router.post("/submitDetails/:userId", Auth, controller.submitDetails);
 router.get("/getUser/:userId", controller.getUser);
 router.put("/update/:id",controller.getEdit)
 router.get("/likeprofile/:senderId",controller.likedprofile)
+// router.delete('/deleteLike/:receiverId',controller.likeDelete)
+
 
 export default router;
